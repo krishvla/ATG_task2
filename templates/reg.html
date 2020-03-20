@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrations</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reg.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <form action="/reg/" id="subform" method="POST">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="username"
+            id="user"
+            placeholder="Enter User Name"
+            onchange="usercheck()"
+            required
+          />
+          <p id="umsg"></p>
+          <br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onchange="passcheck()"
+            placeholder="Enter Password"
+            required
+          />
+          <p id="passmatch"></p>
+          <br />
+          <input
+            type="text"
+            name="confirm"
+            id="confirm"
+            placeholder="Re Enter Password"
+            required
+          />
+
+          <p id="pmsg"></p>
+          <p id="test"></p>
+          <input
+            type="number"
+            id="captcha"
+            name="captch"
+            placeholder="Enter the Captcha"
+            required
+          />
+          <button class="button button1" type="submit" id="btn" disabled>
+            Regsiter
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    var num1, num2, sum;
+    $(function() {
+      var p = document.getElementById("test");
+      const button = document.querySelector("button");
+      button.disabled = true;
+      document.getElementById("btn").style.background = "red";
+      num1 = Math.floor(Math.random() * 10);
+      num2 = Math.floor(Math.random() * 10);
+      sum = num1 + num2;
+      p.innerHTML = "What is result of " + num1 + " + " + num2 + " = ";
+    });
+    $(document).ready(function() {
+      $("#captcha").on("input", function() {
+        const button = document.querySelector("button");
+        if ($(this).val() == sum) {
+          button.disabled = false;
+          document.getElementById("btn").style.background = "blueviolet";
+        } else {
+          button.disabled = true;
+          document.getElementById("btn").style.background = "red";
+        }
+      });
+    });
+    $(document).ready(function() {
+      $("#confirm").on("input", function() {
+        var m = document.getElementById("pmsg");
+        const button = document.querySelector("button");
+        if ($("#password").val() == $(this).val()) {
+          button.disabled = false;
+          document.getElementById("btn").style.background = "blueviolet";
+          m.innerHTML = "Password Matched";
+          m.style.color = "green";
+        } else {
+          button.disabled = true;
+          document.getElementById("btn").style.background = "red";
+          m.innerHTML = "Password Not Matched";
+        }
+      });
+    });
+    function usercheck() {
+      var username = document.getElementById("user").value;
+      $.ajax({
+        type: "POST",
+        url: "/check/",
+        data: {
+          name: username,
+          csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        success: function(e) {
+          if (e == "exsists") {
+            var umsg = document.getElementById("umsg");
+            umsg.innerHTML = "User ALready Exsists";
+          } else {
+            var umsg = document.getElementById("umsg");
+            umsg.innerHTML = "You Can have this username";
+            const button = document.querySelector("button");
+            document.getElementById("btn").style.background = "blueviolet";
+            umsg.style.color = "green";
+          }
+        }
+      });
+    }
+    function passcheck() {
+      var input_pass = document.getElementById("password").value;
+      var pass_reg = /^(?=.*\d)(?=.*[A-Za-z]).{8,20}$/;
+      if (input_pass.match(pass_reg)) {
+        const button = document.querySelector("button");
+        document.getElementById("btn").style.background = "blueviolet";
+        var passmatch = document.getElementById("passmatch");
+        passmatch.innerHTML = "";
+      } else {
+        var passmatch = document.getElementById("passmatch");
+        passmatch.innerHTML =
+          "Password must be alpha numeric and length should be in between 8 to 20 chats";
+      }
+    }
+  </script>
+</html>

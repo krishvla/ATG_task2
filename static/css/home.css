@@ -1,0 +1,56 @@
+body {
+  background-image: url("home.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.reg {
+  float: left;
+  width: 45%;
+  margin-left: 5%;
+  height: 97vh;
+  align-content: center;
+  align-items: center;
+  color: #313131;
+  font-size: 20px;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0px 16px 0px 16px;
+}
+.login {
+  float: right;
+  width: 45%;
+  margin-left: 5%;
+  height: 97vh;
+  align-content: center;
+  align-items: center;
+  color: #313131;
+  font-size: 20px;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0px 16px 0px 16px;
+}
+
+.login:hover,
+.reg:hover {
+  box-shadow: 8px 16px 16px 8px rgba(118, 7, 221, 0.932);
+}
+a {
+  text-decoration: none;
+}
+
+p {
+  text-align: center;
+  margin-top: 50%;
+  font-size: 67px;
+  font-weight: 900;
+}

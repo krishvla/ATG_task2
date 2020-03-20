@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/create.css' %}"
+    />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="btn1">
+      <a href="/dashboard" class="button"> Go to Dashboard</a>
+    </div>
+    <div class="btn2">
+      <a href="/search" class="button"> Search All Articles</a>
+    </div>
+    <div class="btn3">
+      <a href="/logout" class="button2"> Logout - {{ request.session.user }}</a>
+    </div>
+    {% if msg %}
+    <p id="msg">Message {{ msg }}</p>
+    {% endif %}
+    <div class="container">
+      <div class="form">
+        <form action="/create/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="name"
+            placeholder="Article name"
+            required
+          /><br />
+          <textarea
+            name="description"
+            maxlength="490"
+            cols="30"
+            rows="20"
+            placeholder="Descripion of the Article"
+            required
+          ></textarea
+          ><br />
+          <input type="file" name="myfile" id="" required /><br />
+          <select name="pub" id="">
+            <option value="private">Private</option>
+            <option value="public">Public</option> </select
+          ><br />
+          <button class="button3" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

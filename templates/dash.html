@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dash.css' %}" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="btn1">
+      <a href="/create" class="button"> Create New Article</a>
+    </div>
+    <div class="btn2">
+      <a href="/search" class="button"> Search All Articles</a>
+    </div>
+    <div class="btn3">
+      <a href="/logout" class="button2"> Logout - {{ request.session.user }}</a>
+    </div>
+    <div class="ownartucles">
+      {% if data %}
+      <table>
+        <tr>
+          <th>Article Name</th>
+          <th>Discription</th>
+          <th>Picture</th>
+          <th>Posting Status</th>
+          <th>Change Status</th>
+        </tr>
+        {% for d in data %}
+        <form action="/dashboard/" method="POST">
+          {% csrf_token %}
+          <input type="text" name="aid" value="{{ d.id }}" hidden />
+          <tr>
+            <td>{{ d.article_name }}</td>
+            <td>{{ d.content }}</td>
+            <td>
+              <img
+                src="{% static '/' %}{{ d.image }} "
+                alt="article image"
+                width="70px"
+                height="70px"
+              />
+            </td>
+            <td>{{ d.publish }}</td>
+            <td><button type="submit" class="button3">Change</button></td>
+
+            <td></td>
+          </tr>
+        </form>
+
+        {% endfor %}
+      </table>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

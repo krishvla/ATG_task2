@@ -1,0 +1,101 @@
+.button {
+  width: 90%;
+  background-color: blueviolet; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 40px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.button2 {
+  width: 90%;
+  background-color: red; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+.button3 {
+  width: 80%;
+  margin-left: 220px;
+  background-color: green; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.btn1,
+.btn2,
+.btn3 {
+  padding: 10px;
+  float: left;
+  width: 30%;
+  margin-left: 40px;
+}
+.container {
+  float: right;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+.container input[type="text"],
+input[type="file"],
+textarea,
+select {
+  display: block;
+  width: 80%;
+  margin-left: 10%;
+  padding: 15px;
+  color: #313131;
+  font-size: 20px;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0px 16px 0px 16px;
+  transition: 0.4s;
+}
+.container input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  border-radius: 16px 0px 16px 0px;
+}
+
+#msg {
+  color: green;
+  font-size: medium;
+  font-weight: 600;
+}

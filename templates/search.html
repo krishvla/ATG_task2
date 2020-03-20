@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/search.css' %}"
+    />
+    <title>Search</title>
+  </head>
+  <body>
+    <div class="btn1">
+      <a href="/create" class="button"> Create New Article</a>
+    </div>
+    <div class="btn2">
+      <a href="/dashboard" class="button"> Go Back to Dashboard</a>
+    </div>
+    <div class="btn3">
+      <a href="/logout" class="button2"> Logout - {{ request.session.user }}</a>
+    </div>
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="myFunction()"
+      placeholder="Search for names.."
+      title="Type in a name"
+    />
+    <table id="mytable">
+      <tr>
+        <th>Author</th>
+        <th>Article Name</th>
+        <th>Discription</th>
+        <th>Picture</th>
+        <th>Posting Status</th>
+      </tr>
+      {% for d in data %}
+      <tr>
+        <td>{{ d.username }}</td>
+        <td>{{ d.article_name }}</td>
+        <td>{{ d.content }}</td>
+        <td>
+          <img
+            src="{% static '/' %}{{ d.image }} "
+            alt="article image"
+            width="70px"
+            height="70px"
+          />
+        </td>
+        <td>{{ d.publish }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("mytable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+</html>
